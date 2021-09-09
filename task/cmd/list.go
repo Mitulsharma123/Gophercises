@@ -10,7 +10,7 @@ var listCmd = &cobra.Command{
 	Use:   "list",
 	Short: "Lists all of your tasks",
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("List called")
+		fmt.Println("List called one more time")
 	},
 }
 
