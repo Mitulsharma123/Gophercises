@@ -2,7 +2,8 @@
 package main
 
 import (
-	"/go/src/gophercises/structs"
+	"encoding/json"
+	"gophercises/todo-api/structs"
 	"net/http"
 )
 
@@ -14,7 +15,7 @@ func main() {
 				Code: http.StatusOK,
 				Body: "pong",
 			}
-			w.NewEncoder(w).Encode(data)
+			json.NewEncoder(w).Encode(data)
 		}
 		//w.Write([]byte("hello-world"))
 	})
