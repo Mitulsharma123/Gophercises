@@ -1,9 +1,14 @@
 package controller
 
-import "net/http"
+import (
+	"encoding/json"
+	"net/http"
 
-func ping() http.HandlerFunc{
-	return func("/ping", func(w http.ResponseWriter, r *http.Request) {
+	"gophercises/todo-api/views"
+)
+
+func ping() http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
 		if r.Method == http.MethodGet {
 			data := views.Response{
 				Code: http.StatusOK,
@@ -11,5 +16,5 @@ func ping() http.HandlerFunc{
 			}
 			json.NewEncoder(w).Encode(data)
 		}
-	})
+	}
 }
