@@ -14,6 +14,7 @@ func ping() http.HandlerFunc {
 				Code: http.StatusOK,
 				Body: "pong",
 			}
+			w.WriteHeader(http.StatusOK)
 			json.NewEncoder(w).Encode(data)
 		}
 	}
