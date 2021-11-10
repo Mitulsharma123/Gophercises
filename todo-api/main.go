@@ -2,6 +2,7 @@
 package main
 
 import (
+	"fmt"
 	"gophercises/todo-api/controller"
 	"gophercises/todo-api/model"
 	"log"
@@ -11,8 +12,9 @@ import (
 )
 
 func main() {
-	mux := controller.Register()
-	db := model.Connect()
-	defer db.Close()
-	log.Fatal(http.ListenAndServe("localhost:3000", mux))
+	mux := controller.Register() //create a new mux
+	db := model.Connect()        //connect to DB
+	defer db.Close()             //whenever we tear down server,close the DB
+	fmt.Println("serving.....")
+	log.Fatal(http.ListenAndServe(":3000", mux))
 }
