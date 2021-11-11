@@ -10,10 +10,15 @@ func main() {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/panic", panicDemo)
 	mux.HandleFunc("/panic-after", panicAfterDemo)
-	mux.HandleFunc("/", hello)
-	log.Fatal(http.ListenAndServe(":3000", recoverMw(mux)))
+	//mux.HandleFunc("/", hello)
+	log.Fatal(http.ListenAndServe(":3000", mux))
 }
+
 func panicDemo(w http.ResponseWriter, r *http.Request) {
+	defer func() {
+		err := recover() // that msg into panic and recover in this value
+		fmt.Fprint(w, err)
+	}()
 	funcThatPanics()
 }
 
@@ -23,9 +28,5 @@ func panicAfterDemo(w http.ResponseWriter, r *http.Request) {
 }
 
 func funcThatPanics() {
-	panic("oh shit !")
-}
-
-func hello(w http.ResponseWriter, r *http.Request) {
-
+	panic("oh NO !")
 }
