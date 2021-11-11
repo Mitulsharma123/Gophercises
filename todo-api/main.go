@@ -16,5 +16,5 @@ func main() {
 	db := model.Connect()        //connect to DB
 	defer db.Close()             //whenever we tear down server,close the DB
 	fmt.Println("serving.....")
-	log.Fatal(http.ListenAndServe(":3000", mux))
+	log.Fatal(http.ListenAndServe(":3000", mux)) //listen and serve at port 3000 and pass mux
 }
