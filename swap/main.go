@@ -14,7 +14,7 @@ func main() {
 }
 
 func swap(x *int, y *int) {
-	temp = *x
+	temp := *x
 	*x = *y
 	*y = temp
 }
