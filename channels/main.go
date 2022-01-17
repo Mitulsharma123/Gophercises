@@ -7,34 +7,34 @@ import (
   "time"
 )
 
-func pinger(c chan float64) { //channel type represented by keyword chan followed by type
+func pinger(c chan string) { //channel type represented by keyword chan followed by type
   for i := 0; ; i++ {
-    c <- 100     // <- operator to send & receive messages
+    c <- "ping"     // <- operator to send & receive messages
   }			// c<-"ping" means send ping
 }
 
-func ponger(c chan float64){
+func ponger(c chan string){
   for i:=0; ; i++ {
-    c <- 99
+    c <- "pong"
   }
 }
 
-func printer(c chan float64) {
+func printer(c chan string) {
   for {
     msg := <- c			// receive a message and store it in msg
-    fmt.Println("%f", msg)
+    fmt.Println(msg)
     time.Sleep(time.Second * 1)
   }
 }
 
 func main() {
-  var c chan float64 = make(chan float64)
+  var c chan string = make(chan string)
 
   go pinger(c)
   go ponger(c)
   go printer(c)
 
-  //var input string 
-  //fmt.Scanln(&input)
+  var input string 
+  fmt.Scanln(&input)
 
 }
